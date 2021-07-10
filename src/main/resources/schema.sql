@@ -1,0 +1,6 @@
+CREATE TABLE region (
+    id   INTEGER      NOT NULL AUTO_INCREMENT,
+    fullName VARCHAR(128) NOT NULL,
+    shortName VARCHAR(128) NOT NULL,
+    PRIMARY KEY (id)
+);
