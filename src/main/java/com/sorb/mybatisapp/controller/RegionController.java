@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,28 @@ public class RegionController {
     public ResponseEntity<List<Region>> getRegionList() {
         List<Region> regions = regionService.getRegions();
         return new ResponseEntity<>(regions, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Region> getRegion(@PathVariable int id) {
+        return new ResponseEntity<>(regionService.getRegionById(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Region> createRegion(@RequestBody Region region) {
+        Integer res = regionService.createRegion(region);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Region> updateRegion(@PathVariable int id, @RequestBody Region region) {
+        regionService.updateRegion(region, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Region> deleteRegion(@PathVariable int id){
+        regionService.deleteRegion(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
