@@ -34,7 +34,7 @@ public class RegionController {
     @PostMapping
     public ResponseEntity<Region> createRegion(@RequestBody Region region) {
 
-        if (!isRegionFilled(region)) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        if (!isRegionFilled(region)) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         Integer res = regionService.createRegion(region);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -60,7 +60,7 @@ public class RegionController {
         return region != null;
     }
 
-    private boolean isRegionFilled(Region region) {
+/*    private boolean isRegionFilled(Region region) {
         boolean result;
         try {
             result = region.getFullName() != null && region.getShortName() != null
@@ -69,5 +69,5 @@ public class RegionController {
             return false;
         }
         return result;
-    }
+    }*/
 }

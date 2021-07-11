@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,16 +21,15 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    @Cacheable("regions")
     public List<Region> getRegions() {
 
         List<Region> region = regionMapper.getRegions();
-        if (region != null) log.info("Region fetched successfully");
-        return regionMapper.getRegions();
+        if (region != null) log.info("Regions list fetched successfully");
+        return region;
     }
 
     @Override
-    @Cacheable(value = "regions")
+    @Cacheable("regions")
     public Region getRegionById(int id) {
         Region region = regionMapper.getRegionById(id);
         if (region != null) log.info("Region fetched successfully");
@@ -49,13 +47,14 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     @CachePut(value = "regions", key = "#id")
-    public void updateRegion(Region region, int id) {
+    public Region updateRegion(Region region, int id) {
         log.info("Region with id: " + id + " updated");
         regionMapper.updateRegion(region.getFullName(), region.getShortName(), id);
+        return regionMapper.getRegionById(id);
     }
 
     @Override
-    @CacheEvict(value = "regions")
+    @CacheEvict(value = "regions", key = "#id")
     public void deleteRegion(int id) {
         regionMapper.deleteRegion(id);
         if (regionMapper.getRegionById(id) == null) log.info("Region with id: " + id + " deleted");

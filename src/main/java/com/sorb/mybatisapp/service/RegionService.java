@@ -11,7 +11,7 @@ public interface RegionService {
 
     Integer createRegion(Region region);
 
-    void updateRegion(Region region, int id);
+    Region updateRegion(Region region, int id);
 
     void deleteRegion(int id);
 }
