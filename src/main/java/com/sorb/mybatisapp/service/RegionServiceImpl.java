@@ -80,33 +80,4 @@ public class RegionServiceImpl implements RegionService {
         if (regionMapper.getRegionById(id) == null) log.info("Region with id: " + id + " deleted");
     }
 
-/*    private Region trimFields(Region region) {
-        region.setFullName(region.getFullName().trim());
-        region.setShortName(region.getShortName().trim());
-        return region;
-    }*/
-
-  /*  private Region updateRegionFields(Region newRegionFields, int id) {
-        Region region = regionMapper.getRegionById(id);
-        if (newRegionFields.getFullName().equals(region.getFullName()) &&
-                newRegionFields.getFullName() != null &&
-                !newRegionFields.getFullName().trim().isEmpty())
-            region.setFullName(newRegionFields.getFullName());
-        if (newRegionFields.getShortName().equals(region.getFullName()) &&
-                newRegionFields.getShortName() != null &&
-                !newRegionFields.getShortName().trim().isEmpty())
-            region.setShortName(newRegionFields.getShortName());
-
-        return region;
-    }
-
-    private boolean isRequireUpdate(String newString, String oldString) {
-        if (!newString.equals(oldString) &&
-                newString != null &&
-                !newString.trim().isEmpty())
-            return true;
-        return false;
-        Predicate<>
-    }
-*/
 }

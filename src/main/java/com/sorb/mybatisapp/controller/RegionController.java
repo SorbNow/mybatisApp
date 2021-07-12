@@ -33,8 +33,6 @@ public class RegionController {
 
     @PostMapping
     public ResponseEntity<Region> createRegion(@RequestBody Region region) {
-
-//        if (!isRegionFilled(region)) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         Integer res = regionService.createRegion(region);
         if (res == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -49,9 +47,7 @@ public class RegionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Region> deleteRegion(@PathVariable int id) {
-
         if (!isExists(id)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         regionService.deleteRegion(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -61,14 +57,4 @@ public class RegionController {
         return region != null;
     }
 
-/*    private boolean isRegionFilled(Region region) {
-        boolean result;
-        try {
-            result = region.getFullName() != null && region.getShortName() != null
-                    && !region.getShortName().trim().isEmpty() && !region.getFullName().trim().isEmpty();
-        } catch (NullPointerException e) {
-            return false;
-        }
-        return result;
-    }*/
 }
