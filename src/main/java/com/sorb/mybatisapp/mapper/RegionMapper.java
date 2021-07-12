@@ -20,7 +20,7 @@ public interface RegionMapper {
     Integer addRegion(Region region);
 
     @Update("UPDATE region SET fullName=#{fullName}, shortName =#{shortName} WHERE id =#{id}")
-    void updateRegion(String fullName, String shortName, int id);
+    void updateRegion(Region region);
 
     @Delete("DELETE FROM region WHERE id =#{id}")
     void deleteRegion(int id);

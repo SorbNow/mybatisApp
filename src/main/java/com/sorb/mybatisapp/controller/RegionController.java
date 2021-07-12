@@ -36,6 +36,7 @@ public class RegionController {
 
 //        if (!isRegionFilled(region)) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         Integer res = regionService.createRegion(region);
+        if (res == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
